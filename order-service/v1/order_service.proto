@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package orderservice.v1;
+
+option go_package = "github.com/vinhlh/grpc-playground/order-service/v1";
+
+message Request {
+  string orderId = 1;
+}
+
+message Response {
+  string id = 1;
+  Status status = 2;
+  Customer customer = 3;
+  repeated Product products = 4;
+}
+
+enum Status {
+  ORDER_PLACED = 0;
+  ORDER_COMPLETED = 1;
+}
+
+message Customer {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  string price = 3;
+}
+
+service OrderService {
+  rpc GetOrderById(Request) returns (Response) {}
+}
