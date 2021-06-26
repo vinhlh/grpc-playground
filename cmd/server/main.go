@@ -16,6 +16,7 @@ type server struct {
 func (s *server) GetOrderById(ctx context.Context, req *proto.Request) (*proto.Response, error) {
 	return &proto.Response{
 		Id: req.OrderId,
+		Status: proto.Status_ORDER_COMPLETED,
 		Customer: &proto.Customer{
 			FirstName: "Vinh",
 			LastName:  "Le",
